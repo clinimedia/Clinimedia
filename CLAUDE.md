@@ -39,4 +39,4 @@ The single source of truth is `colors_and_type.css`. The actually-used palette i
 - Add `sitemap.xml` and `robots.txt`.
 
 ## Important: the prototype itself
-Open `ui_kits/marketing-site/index.html` directly in a browser to see the working prototype. Use it as your reference for layout, animation timing, and behavior.
+The deployable site is at the repo root. Open `index.html` directly in a browser, or run `python -m http.server 8000` from the repo root, to preview locally. Use it as your reference for layout, animation timing, and behavior. Reference docs (brand voice, color tokens, preview cards) live in `design-system/`.

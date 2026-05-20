@@ -1,27 +1,28 @@
 # Deploying CliniMedia to Vercel
 
-The deployable site lives in `ui_kits/marketing-site/`. The rest of this repo (root `assets/`, `colors_and_type.css`, `preview/`, `PROJECT_README.md`, `SEO_AEO.md`) is the **design system handoff package** — reference material, not part of the live site.
+The deployable site lives at the **repo root**. Vercel needs zero configuration to deploy it — `index.html`, `api/`, `vercel.json`, and `package.json` are all at the root where Vercel expects them.
+
+The `design-system/` subfolder holds design tokens, preview cards, and audit documentation — reference material, NOT part of the live site.
 
 ## GitHub repo
 
 This codebase pushes to: **https://github.com/AhmadHamadi/Clinimedia**
 
-## One-time Vercel setup
+## One-time Vercel setup (zero-config)
 
-1. In the Vercel dashboard, **Add New → Project** and select the `AhmadHamadi/Clinimedia` GitHub repo (authorize GitHub if prompted).
-2. In **Configure Project** → **Root Directory**, click **Edit** and set it to:
-   ```
-   ui_kits/marketing-site
-   ```
-3. **Framework Preset:** `Other` (plain static HTML — no framework build step).
-4. **Build Command:** leave empty. Vercel will detect `package.json` and run `npm install` for the serverless function automatically; no build is needed for the static pages.
-5. **Output Directory:** leave empty (the Root Directory IS the output for static files).
-6. **Install Command:** leave empty (default is `npm install`).
-7. **Node.js version:** `20.x` (set in `package.json` engines).
+1. In the Vercel dashboard, **Add New → Project** and select the `AhmadHamadi/Clinimedia` GitHub repo.
+2. Vercel will auto-detect the project. **Leave every setting at its default:**
+   - Framework Preset: `Other` (auto-detected)
+   - Root Directory: `./` (the default — DO NOT change it)
+   - Build Command: empty
+   - Output Directory: empty
+   - Install Command: empty (default `npm install` runs because `package.json` is present)
+3. Add the env vars (next section).
+4. Click **Deploy**.
 
 ## Environment variables (REQUIRED for the contact form)
 
-Set these in **Vercel → Project → Settings → Environment Variables** (mark them **Sensitive** and apply to **Production + Preview**, NOT Development):
+Set these in **Vercel → Project → Settings → Environment Variables** (mark them **Sensitive**, apply to **Production + Preview**, NOT Development):
 
 | Name | Required | Example | Notes |
 |---|---|---|---|
@@ -31,9 +32,9 @@ Set these in **Vercel → Project → Settings → Environment Variables** (mark
 | `SMTP_PASS` | ✅ | `***` | SMTP password or app password (NOT your account password if 2FA is on) |
 | `CONTACT_TO` | optional | `info@clinimedia.ca` | Destination address. Defaults to `info@clinimedia.ca`. |
 | `CONTACT_FROM` | optional | `noreply@clinimedia.ca` | From-address. Defaults to `SMTP_USER`. |
-| `CONTACT_REPLY_TO` | optional | — | Defaults to the submitter's email (so you can hit "Reply" and respond directly). |
+| `CONTACT_REPLY_TO` | optional | — | Defaults to the submitter's email (so "Reply" works). |
 
-After adding env vars, **redeploy** the latest commit so the function picks them up (Vercel doesn't hot-reload env vars).
+After adding env vars, **redeploy** the latest commit so the function picks them up (Vercel does not hot-reload env vars).
 
 ## Verify after deploy
 
@@ -55,35 +56,80 @@ After adding env vars, **redeploy** the latest commit so the function picks them
 - **Long-cache for assets:** images and videos in `/assets/` get `Cache-Control: public, max-age=31536000, immutable`.
 - **CSS/JS cache:** `max-age=3600, must-revalidate` — short, so updates show up fast.
 - **Honeypot + origin allow-list** on `/api/contact` blocks form-spam without a CAPTCHA.
-- **Sensitive env vars** are marked Sensitive in Vercel (cannot be retrieved after creation, only re-set).
-- **`api/contact.js` is the only serverless function** — all other pages are pure static HTML and serve at the CDN edge for near-zero latency.
+- **Sensitive env vars** are marked Sensitive in Vercel (cannot be retrieved after creation).
+- **`api/contact.js` is the only serverless function** — every other page is pure static HTML served at the CDN edge for near-zero latency.
 
 ## Local development
 
 ```powershell
-cd ui_kits/marketing-site
-
 # Static-only preview (no contact form):
 python -m http.server 8000
+# then open http://localhost:8000
 
-# Full local with API route (needs Vercel CLI):
+# Full local with API route (Vercel CLI):
 npm install -g vercel
 vercel dev
+# then open http://localhost:3000
 ```
 
-For `vercel dev`, copy `.env.example` to `.env` and fill in real SMTP credentials. Vercel CLI will load them.
+For `vercel dev`, copy `.env.example` to `.env` and fill in real SMTP credentials. Vercel CLI auto-loads them.
+
+## Project structure
+
+```
+Clinimedia/                       ← repo root = Vercel deploy root
+├── index.html                    ← Home
+├── services.html
+├── our-work.html
+├── portfolio.html
+├── contact.html
+├── blog.html
+├── blog/                         ← Individual posts
+│   └── *.html  (6 long-form posts)
+├── assets/                       ← Logos, photos, videos
+├── api/
+│   └── contact.js                ← Vercel serverless function (SMTP)
+├── styles.css
+├── scripts.js
+├── sitemap.xml
+├── robots.txt
+├── llms.txt                      ← AI engine summary
+├── package.json                  ← Declares nodemailer + Node 20+
+├── vercel.json                   ← Clean URLs, security headers, cache control
+├── .env.example                  ← Template for SMTP env vars
+├── .gitignore
+├── README.md, DEPLOY.md, CLAUDE.md
+└── design-system/                ← Reference only (NOT deployed)
+    ├── colors_and_type.css
+    ├── PROJECT_README.md
+    ├── SEO_AEO.md
+    ├── SEO_AUDIT.md
+    ├── preview/                  ← Token preview cards
+    ├── brand-assets/             ← Source logos
+    └── strays/                   ← Misc images
+```
 
 ## Adding a new blog post
 
-1. Copy any existing file in `ui_kits/marketing-site/blog/` as your starting point.
-2. Update the `<title>`, `<meta description>`, canonical URL, og tags, and JSON-LD `Article` block.
+1. Copy any existing file in `blog/` as your starting point.
+2. Update the `<title>`, `<meta description>`, canonical URL, OG tags, and JSON-LD `Article` block.
 3. Write the post inside `<article class="cm-post">`.
 4. Add an entry to `blog.html`'s post list.
 5. Add a `<url>` block to `sitemap.xml`.
-6. Commit and push — Vercel auto-deploys.
+6. Commit + push — Vercel auto-deploys.
 
 ## Custom domain (clinimedia.ca)
 
-In your Vercel project → **Settings → Domains** → add `clinimedia.ca` (and `www.clinimedia.ca` for the apex redirect). Vercel will give you DNS records to point at — update them at whoever currently hosts your DNS (Webflow, Cloudflare, your registrar).
+In your Vercel project → **Settings → Domains** → add `clinimedia.ca` and `www.clinimedia.ca`. Vercel will give you DNS records to point at — update them at whoever currently hosts your DNS.
 
 While the domain is still serving the live Webflow site, you can preview the Vercel build on its auto-generated `*.vercel.app` URL.
+
+## Troubleshooting
+
+**404 NOT_FOUND on the deployed site:** The Root Directory was overridden in Vercel project settings. Go to **Settings → General → Root Directory** and reset it to `./` (or blank). Redeploy.
+
+**Contact form returns "Email service is not configured.":** Env vars aren't set or weren't applied to Production. Re-check **Settings → Environment Variables** and trigger a redeploy.
+
+**Contact form returns 502:** SMTP credentials are wrong, port is blocked, or the SMTP provider requires an app password (typical for Gmail with 2FA). Check Vercel function logs in the project dashboard.
+
+**Canva iframe shows a CSP error in DevTools:** Should not happen with the current `vercel.json` — its CSP explicitly allows `https://www.canva.com` and `https://*.canva.com` in `frame-src`. If you see this, confirm the latest commit has been deployed.

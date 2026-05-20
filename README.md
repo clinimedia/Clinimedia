@@ -5,49 +5,60 @@
 ## What's in this repo
 
 ```
-clinimedia/
+Clinimedia/                         ← repo root = Vercel deploy root
 ├── README.md                       ← you are here
 ├── DEPLOY.md                       ← step-by-step Vercel deployment
-├── PROJECT_README.md               ← design system context (brand voice, colors, type)
-├── SEO_AEO.md                      ← SEO + AEO strategy notes
 ├── CLAUDE.md                       ← project context for Claude Code
-├── colors_and_type.css             ← canonical brand tokens (reference)
-├── assets/                         ← top-level brand assets (logo, icon)
-├── preview/                        ← design-system swatch cards (reference)
-└── ui_kits/
-    └── marketing-site/             ← THE DEPLOYABLE SITE (Vercel root)
-        ├── index.html              ← Home (hero video + real media gallery)
-        ├── services.html           ← Services + Silver/Gold/Diamond packages
-        ├── our-work.html           ← Real social posts, reels, ad creative
-        ├── portfolio.html          ← Anonymised clinic case studies
-        ├── contact.html            ← Contact form + office details
-        ├── blog.html               ← Blog index (text-only)
-        ├── blog/                   ← Individual posts (text-only)
-        ├── assets/                 ← Logos, photos, videos (incl. scraped from clinimedia.ca)
-        ├── styles.css              ← All styles
-        ├── scripts.js              ← Vanilla JS for animations + interactivity
-        ├── sitemap.xml             ← XML sitemap covering all routes
-        ├── robots.txt              ← Allow-list incl. GPTBot, ClaudeBot, PerplexityBot, etc.
-        ├── llms.txt                ← Plain-text summary for AI search engines
-        └── vercel.json             ← Clean URLs, security headers, cache control
+├── index.html                      ← Home (hero video + real media gallery)
+├── services.html                   ← Services + Silver/Gold/Diamond packages
+├── our-work.html                   ← Real social posts, reels, ad creative
+├── portfolio.html                  ← Canva-embedded clinic case studies
+├── contact.html                    ← SMTP-backed contact form
+├── blog.html                       ← Blog index (text-only)
+├── blog/                           ← 6 long-form posts (text-only)
+├── assets/                         ← Logos, photos, videos (incl. scraped from clinimedia.ca)
+├── api/
+│   └── contact.js                  ← Vercel serverless function (SMTP → info@clinimedia.ca)
+├── styles.css
+├── scripts.js
+├── sitemap.xml
+├── robots.txt
+├── llms.txt                        ← Plain-text summary for AI search engines
+├── package.json                    ← nodemailer + Node 20+
+├── vercel.json                     ← Clean URLs, security headers, cache control, CSP for Canva
+├── .env.example                    ← Template for SMTP env vars
+├── .gitignore
+└── design-system/                  ← Reference only — NOT deployed
+    ├── colors_and_type.css         ← Canonical brand tokens
+    ├── PROJECT_README.md           ← Brand voice, colors, type
+    ├── SEO_AEO.md                  ← SEO + AEO strategy notes
+    ├── SEO_AUDIT.md                ← 19-agent SEO audit report
+    ├── preview/                    ← Token preview cards
+    ├── brand-assets/               ← Source logo PNGs
+    └── strays/                     ← Misc reference images
 ```
 
 ## Architecture
 
-Pure static HTML + CSS + vanilla JS. **No framework, no build step.** Picked for three reasons:
+Pure static HTML + CSS + vanilla JS + one Vercel serverless function. **No framework, no build step.** Picked for four reasons:
 
 1. **SEO** — every route is its own crawlable HTML file with unique title, description, canonical, OG tags, and per-route JSON-LD. Google sees full content immediately.
 2. **AEO** (AI engine optimization) — ChatGPT, Claude, Perplexity, Gemini, and other AI search engines read static HTML cleanly. JS-rendered SPAs are largely invisible to them. Every page also ships an `sr-only` summary specifically formatted for AI ingestion.
-3. **Vercel zero-config** — point Vercel at `ui_kits/marketing-site/`, hit deploy, done.
+3. **Vercel zero-config** — `index.html`, `api/`, `vercel.json`, and `package.json` are all at the repo root where Vercel expects them. Just hit Deploy.
+4. **Contact form via SMTP** — `api/contact.js` is the only serverless function. Form POSTs JSON; the function sends email through your configured SMTP server (env vars: `SMTP_HOST/PORT/USER/PASS`).
 
-See `DEPLOY.md` for step-by-step Vercel setup.
+See `DEPLOY.md` for step-by-step Vercel setup, including env vars.
 
 ## Local preview
 
 ```powershell
-cd ui_kits/marketing-site
+# Static-only (no contact form):
 python -m http.server 8000
 # open http://localhost:8000
+
+# Full local with API route (Vercel CLI):
+npm install -g vercel
+vercel dev
 ```
 
 ## Fidelity
