@@ -534,6 +534,9 @@ body::before {
 .cm-gallery__cell--span12 { grid-column: span 12; }
 .cm-gallery__cell--dashboard { aspect-ratio: 1672 / 941; background: var(--bg); }   /* native portal.png ratio (matches the laptop-mockup promo graphic) */
 .cm-gallery__cell--dashboard img { object-fit: contain; padding: 0; }              /* keep the whole laptop mockup visible — no crop */
+/* Media-day cell: image renders at its NATIVE width/height — no forced aspect, no crop, no upscaling */
+.cm-gallery__cell--media-day { aspect-ratio: auto; background: var(--bg); padding: 24px; display: flex; align-items: center; justify-content: center; min-height: 320px; }
+.cm-gallery__cell--media-day img { position: static; inset: auto; width: auto; height: auto; max-width: 100%; object-fit: contain; }
 @media (max-width: 900px) { .cm-gallery__cell--span4, .cm-gallery__cell--span3 { grid-column: span 6; } .cm-gallery__cell--span6, .cm-gallery__cell--span8, .cm-gallery__cell--span12 { grid-column: span 12; } }
 
 /* ── Mobile nav ───────────────────────────────────────────────── */
