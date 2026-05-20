@@ -1,0 +1,16 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Semantic Colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:20px; background:#fff; font-family: var(--font-sans); display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; }
+  .card { border-radius:12px; padding:18px; display:flex; flex-direction:column; gap:8px; min-height:100px; }
+  .dot { width:24px; height:24px; border-radius:999px; }
+  .name { font-size:13px; font-weight:600; color: var(--fg-1); }
+  .hex  { font-family: var(--font-mono); font-size:11px; color: var(--fg-3); }
+</style>
+</head><body>
+  <div class="card" style="background:#EAF7F0"><div class="dot" style="background:#2EA66B"></div><div class="name">Success</div><div class="hex">#2EA66B</div></div>
+  <div class="card" style="background:#FCF4E5"><div class="dot" style="background:#E8A33C"></div><div class="name">Warning</div><div class="hex">#E8A33C</div></div>
+  <div class="card" style="background:#FAEAE5"><div class="dot" style="background:#D6553F"></div><div class="name">Danger</div><div class="hex">#D6553F</div></div>
+  <div class="card" style="background:#EEF5F8"><div class="dot" style="background:#6BA3BB"></div><div class="name">Info</div><div class="hex">#6BA3BB</div></div>
+</body></html>

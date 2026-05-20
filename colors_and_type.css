@@ -1,0 +1,153 @@
+/* ─────────────────────────────────────────────────────────
+   CliniMedia · Colors & Type
+   Modern, clinical, trustworthy. Soft sky-blue accent on a
+   deep slate base. Lots of white. Inter as the workhorse.
+   ──────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Brand: Slate (logo wordmark + cross icon) ──────── */
+  --cm-slate-900: #1F2A33;   /* deepest — H1, hero text */
+  --cm-slate-800: #2A3743;   /* logo wordmark */
+  --cm-slate-700: #3A4954;   /* body strong */
+  --cm-slate-500: #5C6B77;   /* secondary text */
+  --cm-slate-300: #A5B0BA;   /* tertiary text, dividers */
+  --cm-slate-100: #E5E9ED;   /* hairlines */
+  --cm-slate-50:  #F4F6F8;   /* surface tint */
+
+  /* ── Brand: Sky (logo accent ring + secondary "Media") ─ */
+  --cm-sky-700:   #4A8AA3;   /* hover/active accent */
+  --cm-sky-600:   #6BA3BB;   /* default accent */
+  --cm-sky-500:   #8FBCD0;   /* logo gradient mid */
+  --cm-sky-400:   #B5D2E0;   /* soft accent */
+  --cm-sky-200:   #D9E8EF;   /* tints, callout backgrounds */
+  --cm-sky-50:    #EEF5F8;   /* surface tint */
+
+  /* ── Neutrals ───────────────────────────────────────── */
+  --cm-white:     #FFFFFF;
+  --cm-cream:     #FBFBFA;   /* off-white pages */
+  --cm-black:     #0E1418;
+
+  /* ── Semantic accents (used sparingly) ──────────────── */
+  --cm-success:   #2EA66B;   /* greentick.png parity */
+  --cm-warning:   #E8A33C;
+  --cm-danger:    #D6553F;
+  --cm-info:      var(--cm-sky-600);
+
+  /* ── Foreground / Background semantic tokens ────────── */
+  --fg-1: var(--cm-slate-900);     /* primary text */
+  --fg-2: var(--cm-slate-700);     /* body */
+  --fg-3: var(--cm-slate-500);     /* secondary */
+  --fg-4: var(--cm-slate-300);     /* tertiary */
+  --fg-on-accent: var(--cm-white);
+  --fg-on-dark:   var(--cm-white);
+
+  --bg-1: var(--cm-white);         /* primary page */
+  --bg-2: var(--cm-cream);         /* alt section */
+  --bg-3: var(--cm-slate-50);      /* card surface */
+  --bg-4: var(--cm-sky-50);        /* sky tint section */
+  --bg-dark: var(--cm-slate-900);  /* footer / inverted */
+
+  --border-hairline: var(--cm-slate-100);
+  --border-default:  #D6DCE2;
+  --border-strong:   var(--cm-slate-300);
+
+  /* ── Typography ─────────────────────────────────────── */
+  --font-sans:    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif; /* tight, heavy weight handles display duty */
+
+  /* Type scale — Webflow-style, fluid-ish */
+  --text-eyebrow:    0.75rem;   /* 12px, all-caps, tracked */
+  --text-tiny:       0.75rem;
+  --text-small:      0.875rem;  /* 14 */
+  --text-regular:    1rem;      /* 16 */
+  --text-medium:     1.125rem;  /* 18 */
+  --text-large:      1.25rem;   /* 20 */
+  --h6: 1rem;
+  --h5: 1.125rem;
+  --h4: 1.5rem;     /* 24 */
+  --h3: 2rem;       /* 32 */
+  --h2: 2.75rem;    /* 44 */
+  --h1: clamp(2.75rem, 5vw + 1rem, 4.5rem);  /* 44 → 72 */
+  --display: clamp(3.5rem, 7vw + 1rem, 6.25rem); /* huge hero */
+
+  --leading-tight:  1.05;
+  --leading-snug:   1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.65;
+
+  --tracking-tight: -0.02em;   /* hero/H1 */
+  --tracking-snug:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:  0.04em;
+  --tracking-eyebrow: 0.14em;  /* eyebrow all-caps */
+
+  /* ── Radius / Shadow / Spacing ──────────────────────── */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(31, 42, 51, 0.05);
+  --shadow-sm: 0 2px 6px rgba(31, 42, 51, 0.06), 0 1px 2px rgba(31, 42, 51, 0.04);
+  --shadow-md: 0 8px 24px rgba(31, 42, 51, 0.08), 0 2px 6px rgba(31, 42, 51, 0.04);
+  --shadow-lg: 0 24px 48px rgba(31, 42, 51, 0.10), 0 4px 12px rgba(31, 42, 51, 0.05);
+  --shadow-glow: 0 0 0 6px rgba(143, 188, 208, 0.18);  /* sky focus ring */
+
+  /* Spacer scale — mirrors Webflow source */
+  --sp-4:  4px;   --sp-8:  8px;   --sp-12: 12px;  --sp-16: 16px;
+  --sp-20: 20px;  --sp-24: 24px;  --sp-28: 28px;  --sp-32: 32px;
+  --sp-40: 40px;  --sp-48: 48px;  --sp-56: 56px;  --sp-64: 64px;
+  --sp-72: 72px;  --sp-80: 80px;  --sp-96: 96px;  --sp-104:104px;
+  --sp-120:120px; --sp-144:144px;
+
+  /* Container widths */
+  --container-sm: 720px;
+  --container-md: 960px;
+  --container-lg: 1240px;
+  --container-xl: 1440px;
+
+  /* Motion */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:    140ms;
+  --dur-base:    240ms;
+  --dur-slow:    480ms;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Base & semantic element styles
+   ──────────────────────────────────────────────────────── */
+html { font-family: var(--font-sans); color: var(--fg-1); background: var(--bg-1); -webkit-font-smoothing: antialiased; }
+body { font-size: var(--text-regular); line-height: var(--leading-normal); color: var(--fg-2); }
+
+h1, .h1 { font-family: var(--font-display); font-size: var(--h1); font-weight: 700; line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); color: var(--fg-1); text-wrap: balance; }
+h2, .h2 { font-size: var(--h2); font-weight: 700; line-height: var(--leading-snug); letter-spacing: var(--tracking-tight); color: var(--fg-1); text-wrap: balance; }
+h3, .h3 { font-size: var(--h3); font-weight: 600; line-height: var(--leading-snug); letter-spacing: var(--tracking-snug); color: var(--fg-1); }
+h4, .h4 { font-size: var(--h4); font-weight: 600; line-height: var(--leading-snug); color: var(--fg-1); }
+h5, .h5 { font-size: var(--h5); font-weight: 600; line-height: var(--leading-snug); color: var(--fg-1); }
+h6, .h6 { font-size: var(--h6); font-weight: 600; line-height: var(--leading-snug); color: var(--fg-1); }
+
+p { font-size: var(--text-regular); line-height: var(--leading-relaxed); color: var(--fg-2); }
+small { font-size: var(--text-small); color: var(--fg-3); }
+
+.eyebrow {
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--cm-sky-700);
+}
+
+a { color: var(--cm-sky-700); text-decoration: none; transition: color var(--dur-fast) var(--ease-out); }
+a:hover { color: var(--cm-slate-900); }
+
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.95em; }
+
+hr { border: 0; height: 1px; background: var(--border-hairline); }
+
+::selection { background: var(--cm-sky-200); color: var(--cm-slate-900); }

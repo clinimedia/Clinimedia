@@ -1,0 +1,15 @@
+{
+  "name": "clinimedia-marketing-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CliniMedia marketing site — static HTML + Vercel serverless contact form.",
+  "scripts": {
+    "dev": "python -m http.server 8000"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

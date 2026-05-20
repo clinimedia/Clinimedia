@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Form Inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:22px; background:#fff; font-family: var(--font-sans); display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  label { font-size:13px; font-weight:600; color: var(--fg-1); display:block; margin-bottom:6px; }
+  .input, select, textarea { font-family:inherit; font-size:15px; width:100%; padding:12px 14px; border:1px solid #D6DCE2; border-radius:10px; background:#fff; color: var(--fg-1); box-sizing:border-box; outline:none; transition: all 140ms; }
+  .input:focus, select:focus, textarea:focus { border-color: var(--cm-sky-600); box-shadow: 0 0 0 4px rgba(143,188,208,0.22); }
+  .input::placeholder { color: var(--fg-4); }
+  .check { display:flex; align-items:center; gap:10px; font-size:14px; color: var(--fg-2); }
+  .check input { accent-color: var(--cm-slate-900); width:18px; height:18px; }
+</style>
+</head><body>
+  <div><label>Clinic name</label><input class="input" placeholder="Bayview Dental"></div>
+  <div><label>Email</label><input class="input" type="email" placeholder="you@clinic.com"></div>
+  <div><label>Service</label>
+    <select><option>Meta &amp; Google Ads</option><option>Media Day</option><option>Website Design</option></select>
+  </div>
+  <div><label>Package</label>
+    <select><option>Silver</option><option>Gold</option><option>Diamond</option></select>
+  </div>
+  <div style="grid-column: 1/-1"><label class="check"><input type="checkbox" checked> I'd like a strategy call within 48 hours.</label></div>
+</body></html>
