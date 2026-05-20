@@ -532,7 +532,8 @@ body::before {
 .cm-gallery__cell--span8 { grid-column: span 8; }
 .cm-gallery__cell--span3 { grid-column: span 3; }
 .cm-gallery__cell--span12 { grid-column: span 12; }
-.cm-gallery__cell--dashboard { aspect-ratio: 1885 / 1000; }   /* native dashboard image ratio */
+.cm-gallery__cell--dashboard { aspect-ratio: 1672 / 941; background: var(--bg); }   /* native portal.png ratio (matches the laptop-mockup promo graphic) */
+.cm-gallery__cell--dashboard img { object-fit: contain; padding: 0; }              /* keep the whole laptop mockup visible — no crop */
 @media (max-width: 900px) { .cm-gallery__cell--span4, .cm-gallery__cell--span3 { grid-column: span 6; } .cm-gallery__cell--span6, .cm-gallery__cell--span8, .cm-gallery__cell--span12 { grid-column: span 12; } }
 
 /* ── Mobile nav ───────────────────────────────────────────────── */
