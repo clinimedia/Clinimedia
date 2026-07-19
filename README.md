@@ -1,6 +1,7 @@
 # CliniMedia — Marketing Site + Design System
 
 > Marketing site for CliniMedia, a digital marketing agency for dental & medical clinics across the GTA. Production-ready static site, deployable to Vercel.
+> 
 
 ## What's in this repo
 
