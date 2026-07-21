@@ -4,110 +4,186 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Clinic Templates — Dental Website Designs</title>
-  <meta name="description" content="A showcase of ready-to-customize dental clinic website templates." />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Template Library — CliniMedia</title>
+  <meta name="description" content="Internal template library: ready-to-customize dental clinic website designs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ink: #101828; --soft: #667085; --line: #e4e7ec; --bg: #f8fafc;
-      --accent: #4f46e5; --radius: 16px;
-      --font: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+      --slate-900:#0E1418; --slate-700:#2A3743; --slate-500:#5C6B77;
+      --slate-300:#A5B0BA; --slate-100:#E5E9ED; --slate-50:#F4F6F8;
+      --sky-700:#3F7E99; --sky-600:#6BA3BB; --sky-400:#B5D2E0; --sky-300:#B5D2E0;
+      --sky-200:#D9E8EF; --sky-50:#EEF5F8; --cream:#FBFAF6;
+      --display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+      --sans:"Inter", ui-sans-serif, system-ui, sans-serif;
+      --mono:"JetBrains Mono", ui-monospace, monospace;
+      --ease:cubic-bezier(0.22,1,0.36,1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font); color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--slate-900); -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+    /* grain overlay — matches main site */
+    body::before {
+      content:""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
 
-    header { text-align: center; padding: 80px 24px 50px; }
-    .badge { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: #eef2ff; padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; }
-    header h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.02em; margin-bottom: 16px; }
-    header p { color: var(--soft); font-size: 1.15rem; max-width: 34em; margin: 0 auto; }
+    /* ── Eyebrow (mono + pulsing sky dot) ── */
+    .eyebrow { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate-700); display: inline-flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content:""; width: 8px; height: 8px; border-radius: 999px; background: var(--sky-600); box-shadow: 0 0 0 4px rgba(107,163,187,0.22); animation: dotPulse 2s ease-in-out infinite; }
+    @keyframes dotPulse { 0%,100% { box-shadow: 0 0 0 4px rgba(107,163,187,0.22);} 50% { box-shadow: 0 0 0 8px rgba(107,163,187,0);} }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding-bottom: 40px; }
-    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -28px rgba(16,24,40,.4); }
-    .preview { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .preview .emoji { font-size: 4.5rem; filter: drop-shadow(0 10px 18px rgba(0,0,0,.2)); }
-    .p-modern { background: linear-gradient(150deg, #0ea5b7, #0b8291); }
-    .p-family { background: linear-gradient(150deg, #f6c89a, #e8804f); }
-    .p-premium { background: linear-gradient(150deg, #1e1e17, #14140f); }
-    .p-premium .emoji { filter: drop-shadow(0 6px 14px rgba(201,164,92,.5)); }
-    .tag { position: absolute; top: 14px; left: 14px; background: rgba(255,255,255,.9); color: var(--ink); font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
-    .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-    .card-body h2 { font-size: 1.3rem; margin-bottom: 6px; }
-    .style-note { font-size: .82rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
-    .card-body p { color: var(--soft); font-size: .93rem; margin-bottom: 20px; flex: 1; }
-    .card-actions { display: flex; gap: 10px; }
-    .btn { flex: 1; text-align: center; font-weight: 600; font-size: .9rem; padding: 11px 16px; border-radius: 10px; border: 1.5px solid var(--line); transition: all .2s; }
-    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .btn-primary:hover { background: #4338ca; }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    /* ── Buttons ── */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--sans); font-size: 14px; font-weight: 600; padding: 13px 22px; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; transition: all 240ms var(--ease); }
+    .btn--solid { background: var(--slate-900); color: #fff; }
+    .btn--solid:hover { background: var(--slate-700); box-shadow: 0 12px 28px rgba(14,20,24,0.22); transform: translateY(-2px); }
+    .btn--ghost { background: transparent; color: var(--slate-900); border-color: var(--slate-300); }
+    .btn--ghost:hover { border-color: var(--slate-900); transform: translateY(-2px); }
+    .btn .arrow { transition: transform 240ms var(--ease); }
+    .btn--solid:hover .arrow { transform: translateX(3px); }
 
-    .help { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin: 20px 0 70px; }
-    .help h3 { margin-bottom: 8px; }
-    .help p { color: var(--soft); font-size: .95rem; }
-    .help code { background: var(--bg); padding: 2px 7px; border-radius: 6px; font-size: .88em; border: 1px solid var(--line); }
-    footer { text-align: center; padding: 30px; color: var(--soft); font-size: .85rem; }
-    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    /* ── Nav ── */
+    .nav { position: sticky; top: 0; z-index: 50; background: rgba(251,250,246,0.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--slate-100); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 74px; }
+    .nav__logo img { height: 30px; width: auto; }
+    .nav__right { display: flex; align-items: center; gap: 20px; }
+    .nav__tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--slate-500); border: 1px solid var(--slate-100); padding: 6px 12px; border-radius: 999px; }
+    .nav__back { font-size: 14px; font-weight: 500; color: var(--slate-700); transition: color 140ms var(--ease); }
+    .nav__back:hover { color: var(--slate-900); }
+    @media (max-width: 640px){ .nav__tag { display: none; } }
+
+    /* ── Hero ── */
+    .hero { padding: 84px 0 40px; }
+    .hero__grid { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 32px; }
+    .hero h1 { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95; font-size: clamp(2.75rem, 6.5vw, 5.5rem); margin: 22px 0 0; }
+    .hero__lead { max-width: 46ch; margin-top: 22px; font-size: 1.125rem; color: var(--slate-500); }
+    .hero__count { font-family: var(--mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--slate-500); white-space: nowrap; padding-bottom: 6px; }
+    .hero__count b { color: var(--slate-900); font-family: var(--display); font-size: 3.5rem; font-weight: 700; display: block; letter-spacing: -0.03em; line-height: 1; }
+    .hero__rule { height: 1px; background: var(--slate-100); margin: 44px 0 0; }
+    @media (max-width: 760px){ .hero__grid { grid-template-columns: 1fr; } .hero__count { display: none; } }
+
+    /* ── Cards ── */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 56px 0 80px; }
+    .card { background: #fff; border: 1px solid var(--slate-100); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform 320ms var(--ease), box-shadow 320ms var(--ease); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(31,42,51,0.12); }
+    .card__preview { height: 210px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .card__preview .glyph { font-size: 4.4rem; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22)); }
+    .p1 { background: linear-gradient(150deg, #0ea5b7, #0b8291); }
+    .p2 { background: linear-gradient(150deg, #f2c8a3, #e8804f); }
+    .p3 { background: linear-gradient(150deg, #232320, #14140f); }
+    .card__code { position: absolute; top: 16px; left: 16px; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.14em; color: var(--slate-900); background: rgba(255,255,255,0.92); padding: 6px 12px; border-radius: 999px; }
+    .card__body { padding: 26px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+    .card__style { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sky-700); margin-bottom: 10px; }
+    .card__body h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: 1.75rem; text-transform: uppercase; line-height: 1; }
+    .card__body p { color: var(--slate-500); font-size: 0.95rem; margin: 12px 0 22px; flex: 1; }
+    .card__actions { display: flex; gap: 10px; }
+    .card__actions .btn { flex: 1; }
+
+    /* ── Note strip ── */
+    .note { background: var(--sky-50); border: 1px solid var(--sky-200); border-radius: 20px; padding: 28px 32px; display: flex; gap: 18px; align-items: flex-start; margin-bottom: 72px; }
+    .note__dot { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--sky-200); display: grid; place-items: center; font-size: 1.2rem; }
+    .note h3 { font-family: var(--display); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .note p { color: var(--slate-500); font-size: 0.92rem; }
+    .note code { font-family: var(--mono); font-size: 0.85em; background: #fff; border: 1px solid var(--sky-200); padding: 2px 7px; border-radius: 6px; color: var(--slate-700); }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid var(--slate-100); }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0; flex-wrap: wrap; }
+    .footer img { height: 22px; opacity: 0.85; }
+    .footer span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate-300); }
+
+    @media (max-width: 860px){ .grid { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } .note { flex-direction: column; } }
   </style>
 </head>
 <body>
-  <header>
-    <span class="badge">Clinic Templates</span>
-    <h1>Dental website templates</h1>
-    <p>A collection of ready-to-customize website designs for dental clinics. Pick a style, swap in the client's details, and launch.</p>
+  <!-- ── Nav ── -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="https://clinimedia.ca" aria-label="CliniMedia home"><img src="/assets/clinimedia-logo.png" alt="CliniMedia" /></a>
+      <div class="nav__right">
+        <span class="nav__tag">Internal · Template Library</span>
+        <a class="nav__back" href="https://clinimedia.ca">← Back to site</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div>
+          <span class="eyebrow">Clinic Website Templates</span>
+          <h1>Pick a starting<br>point.</h1>
+          <p class="hero__lead">Ready-to-customize website designs for dental &amp; medical clinics. Choose a direction, drop in the client's brand, and launch fast.</p>
+        </div>
+        <div class="hero__count"><b>03</b>templates</div>
+      </div>
+      <div class="hero__rule"></div>
+    </div>
   </header>
 
-  <main class="wrap">
-    <div class="grid">
+  <!-- ── Grid ── -->
+  <main class="container">
+    <section class="grid">
       <article class="card">
-        <div class="preview p-modern"><span class="tag">Template 01</span><span class="emoji">🦷</span></div>
-        <div class="card-body">
-          <h2>BrightSmile</h2>
-          <div class="style-note">Modern · Clean · Trustworthy</div>
-          <p>A crisp, professional design with a teal palette. Great for general and family practices that want to feel current and approachable.</p>
-          <div class="card-actions">
-            <a class="btn btn-primary" href="/templates/modern">View Live</a>
-            <a class="btn btn-ghost" href="/templates/modern" target="_blank">Open New Tab</a>
+        <div class="card__preview p1"><span class="card__code">CM-1</span><span class="glyph">🦷</span></div>
+        <div class="card__body">
+          <div class="card__style">Modern · Clean · Trustworthy</div>
+          <h2>CM-1</h2>
+          <p>A crisp, professional layout with a teal accent. Ideal for general and family practices that want to feel current and approachable.</p>
+          <div class="card__actions">
+            <a class="btn btn--solid" href="/templates/modern">View live <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--ghost" href="/templates/modern" target="_blank" rel="noopener">New tab ↗</a>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <div class="preview p-family"><span class="tag">Template 02</span><span class="emoji">👪</span></div>
-        <div class="card-body">
-          <h2>Maple Family</h2>
-          <div class="style-note">Warm · Friendly · Inviting</div>
-          <p>Soft, cozy, and welcoming with a warm palette and rounded shapes. Ideal for family and pediatric-focused clinics.</p>
-          <div class="card-actions">
-            <a class="btn btn-primary" href="/templates/family">View Live</a>
-            <a class="btn btn-ghost" href="/templates/family" target="_blank">Open New Tab</a>
+        <div class="card__preview p2"><span class="card__code">CM-2</span><span class="glyph">👪</span></div>
+        <div class="card__body">
+          <div class="card__style">Warm · Friendly · Inviting</div>
+          <h2>CM-2</h2>
+          <p>Soft, cozy, and welcoming with a warm palette and rounded shapes. Built for family and pediatric-focused clinics.</p>
+          <div class="card__actions">
+            <a class="btn btn--solid" href="/templates/family">View live <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--ghost" href="/templates/family" target="_blank" rel="noopener">New tab ↗</a>
           </div>
         </div>
       </article>
 
       <article class="card">
-        <div class="preview p-premium"><span class="tag">Template 03</span><span class="emoji">💎</span></div>
-        <div class="card-body">
-          <h2>Lumière Studio</h2>
-          <div class="style-note">Luxury · Elegant · High-end</div>
-          <p>A dark, refined design with gold accents and serif typography. Built for cosmetic and premium dental studios.</p>
-          <div class="card-actions">
-            <a class="btn btn-primary" href="/templates/premium">View Live</a>
-            <a class="btn btn-ghost" href="/templates/premium" target="_blank">Open New Tab</a>
+        <div class="card__preview p3"><span class="card__code">CM-3</span><span class="glyph">💎</span></div>
+        <div class="card__body">
+          <div class="card__style">Luxury · Elegant · High-end</div>
+          <h2>CM-3</h2>
+          <p>A dark, refined design with gold accents and serif type. Made for cosmetic and premium dental studios.</p>
+          <div class="card__actions">
+            <a class="btn btn--solid" href="/templates/premium">View live <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--ghost" href="/templates/premium" target="_blank" rel="noopener">New tab ↗</a>
           </div>
         </div>
       </article>
-    </div>
+    </section>
 
-    <div class="help">
-      <h3>How to use these</h3>
-      <p>Each template lives in its own folder under <code>templates/</code> and is fully self-contained (HTML + CSS + JS). To customize for a client: open the folder, edit the text in <code>index.html</code>, and change the colors at the top of <code>styles.css</code> (look for the <code>:root</code> variables). No build tools or installation required — just open the file in a browser. See <code>README.md</code> for full details.</p>
-    </div>
+    <aside class="note">
+      <div class="note__dot">✦</div>
+      <div>
+        <h3>Using these</h3>
+        <p>Each template is fully self-contained (HTML + CSS + JS) and lives under <code>/templates/</code>. To customize for a client, edit the text in its <code>index.html</code> and swap the colour variables at the top of its <code>styles.css</code>. This page is unlisted — share the link directly with prospects.</p>
+      </div>
+    </aside>
   </main>
 
-  <footer>
-    Clinic Templates · Built for pitching dental clinic clients · 2026
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="/assets/clinimedia-logo.png" alt="CliniMedia" />
+      <span>Template Library · Internal use</span>
+    </div>
   </footer>
 </body>
 </html>
