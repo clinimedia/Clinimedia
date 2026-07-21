@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Clinic Templates — Dental Website Designs</title>
+  <meta name="description" content="A showcase of ready-to-customize dental clinic website templates." />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #101828; --soft: #667085; --line: #e4e7ec; --bg: #f8fafc;
+      --accent: #4f46e5; --radius: 16px;
+      --font: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    header { text-align: center; padding: 80px 24px 50px; }
+    .badge { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: #eef2ff; padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; }
+    header h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.02em; margin-bottom: 16px; }
+    header p { color: var(--soft); font-size: 1.15rem; max-width: 34em; margin: 0 auto; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding-bottom: 40px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -28px rgba(16,24,40,.4); }
+    .preview { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .preview .emoji { font-size: 4.5rem; filter: drop-shadow(0 10px 18px rgba(0,0,0,.2)); }
+    .p-modern { background: linear-gradient(150deg, #0ea5b7, #0b8291); }
+    .p-family { background: linear-gradient(150deg, #f6c89a, #e8804f); }
+    .p-premium { background: linear-gradient(150deg, #1e1e17, #14140f); }
+    .p-premium .emoji { filter: drop-shadow(0 6px 14px rgba(201,164,92,.5)); }
+    .tag { position: absolute; top: 14px; left: 14px; background: rgba(255,255,255,.9); color: var(--ink); font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
+    .card-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h2 { font-size: 1.3rem; margin-bottom: 6px; }
+    .style-note { font-size: .82rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .card-body p { color: var(--soft); font-size: .93rem; margin-bottom: 20px; flex: 1; }
+    .card-actions { display: flex; gap: 10px; }
+    .btn { flex: 1; text-align: center; font-weight: 600; font-size: .9rem; padding: 11px 16px; border-radius: 10px; border: 1.5px solid var(--line); transition: all .2s; }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: #4338ca; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .help { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; margin: 20px 0 70px; }
+    .help h3 { margin-bottom: 8px; }
+    .help p { color: var(--soft); font-size: .95rem; }
+    .help code { background: var(--bg); padding: 2px 7px; border-radius: 6px; font-size: .88em; border: 1px solid var(--line); }
+    footer { text-align: center; padding: 30px; color: var(--soft); font-size: .85rem; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">Clinic Templates</span>
+    <h1>Dental website templates</h1>
+    <p>A collection of ready-to-customize website designs for dental clinics. Pick a style, swap in the client's details, and launch.</p>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <article class="card">
+        <div class="preview p-modern"><span class="tag">Template 01</span><span class="emoji">🦷</span></div>
+        <div class="card-body">
+          <h2>BrightSmile</h2>
+          <div class="style-note">Modern · Clean · Trustworthy</div>
+          <p>A crisp, professional design with a teal palette. Great for general and family practices that want to feel current and approachable.</p>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="/templates/modern">View Live</a>
+            <a class="btn btn-ghost" href="/templates/modern" target="_blank">Open New Tab</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview p-family"><span class="tag">Template 02</span><span class="emoji">👪</span></div>
+        <div class="card-body">
+          <h2>Maple Family</h2>
+          <div class="style-note">Warm · Friendly · Inviting</div>
+          <p>Soft, cozy, and welcoming with a warm palette and rounded shapes. Ideal for family and pediatric-focused clinics.</p>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="/templates/family">View Live</a>
+            <a class="btn btn-ghost" href="/templates/family" target="_blank">Open New Tab</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="preview p-premium"><span class="tag">Template 03</span><span class="emoji">💎</span></div>
+        <div class="card-body">
+          <h2>Lumière Studio</h2>
+          <div class="style-note">Luxury · Elegant · High-end</div>
+          <p>A dark, refined design with gold accents and serif typography. Built for cosmetic and premium dental studios.</p>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="/templates/premium">View Live</a>
+            <a class="btn btn-ghost" href="/templates/premium" target="_blank">Open New Tab</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="help">
+      <h3>How to use these</h3>
+      <p>Each template lives in its own folder under <code>templates/</code> and is fully self-contained (HTML + CSS + JS). To customize for a client: open the folder, edit the text in <code>index.html</code>, and change the colors at the top of <code>styles.css</code> (look for the <code>:root</code> variables). No build tools or installation required — just open the file in a browser. See <code>README.md</code> for full details.</p>
+    </div>
+  </main>
+
+  <footer>
+    Clinic Templates · Built for pitching dental clinic clients · 2026
+  </footer>
+</body>
+</html>
